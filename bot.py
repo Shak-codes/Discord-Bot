@@ -73,11 +73,15 @@ async def steam(ctx, a, b):
             discount_price_container = container.find_all("div", attrs={'class': 'discount_final_price'})
             discount_price = discount_price_container[0].text
 
-            games += name + " | Original Price - " + original_price + " | Discounted Price - " + discount_price + "\n"
-        await ctx.send("```" + games + "```")
+            games += "**" + name + "**" + " **|** Original Price - " + "*" + original_price + "*" + " **|** Discounted Price - " + "*" + discount_price + "*" + "\n\n"
+        embed = discord.Embed(
+            title = 'Games on Sale',
+            description = games,
+            colour = discord.Colour.green()
+        )
+        await ctx.send(embed=embed)
 
     else:
         await ctx.send("Please enter valid numbers from 1 to " + str(total_games))
 
-        
 client.run(key.key)
